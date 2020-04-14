@@ -1,13 +1,14 @@
-module.exports.run = async (bot, message, args) => {
-    $.getJSON('https://api.mcsrvstat.us/2/play.advanced-craft.cf', function(status) {
-	    //Show the version
-	    console.log(status.version);
+const Discord = require("discord.js");
 
-	    //Show a list of players
-	    $.each(status.players.list, function(index, player){
-		    console.log(player);
-	    });
-    });
+module.exports.run = async (bot, message, args) => {
+
+	const { getStatus } = require("mc-server-status")
+ 
+	const status = await getStatus("play.survival-games.cz")
+	console.log(status)
+
+	message.channel.sendEmbed(status)
+	return;
 }
 
 module.exports.help = {
