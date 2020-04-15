@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
             let embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username)
                 .setDescription("This is the user info!")
-                .setColor(0x2cfc03)
+                .setColor(0xF66704)
                 .addField("Full Username", `${message.author.username}#${message.author.discriminator}`, true)
                 .addField("ID", message.author.id, true)
                 .addField("Created At", formatted_date, true)

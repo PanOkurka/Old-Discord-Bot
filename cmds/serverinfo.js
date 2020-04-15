@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
         let serverstats = new Discord.RichEmbed()
             .setTitle("__**Server Info**__")
             .setDescription("**This is the server info!**")
-            .setColor(0x2cfc03)
+            .setColor(0xF66704)
             .addField("Server Name", message.guild.name, true)
             .addField("Onwer", message.guild.owner, true)
             .addField("Region", message.guild.region, true)

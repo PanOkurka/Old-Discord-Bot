@@ -10,11 +10,12 @@ module.exports.run = async (bot, message, args) => {
         .addField("/serverinfo", "Server info", true)
         .addField("/userinfo", "User info", true)
         .addField("/avatar [name]", "Avatar, name = mention", true)
-        .addField("/cat", "Cat image", true)
-        .addField("/dog", "Dog image", true)
         .addField("/meme", "Random meme", true)
-        .addField("/Colors", "All Colors", true)
-        .setColor(0x49F759)
+        .addField("/Prejvi", "Prejvi YT", true)
+        .addField("/elite", "Elite Rank", true)
+        .addField("/ultra", "Ultra Rank", true)
+        .addField("/legendary", "Legendary Rank", true)
+        .setColor(0xF66704)
     message.channel.sendEmbed(help);
     return;
 }
