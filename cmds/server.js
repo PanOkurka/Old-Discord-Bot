@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Připravují se", "Skyblock", true)
     .setColor(0xF66704)
     .setFooter("aktualizováno : 14.4. 2020 v 21:50")
-    .setThumbnail("https://i.imgur.com/WSO9P3y.png")
+    .setThumbnail("https://i.imgur.com/wk9tFBP.png")
     message.channel.sendEmbed(info);
 }
 
