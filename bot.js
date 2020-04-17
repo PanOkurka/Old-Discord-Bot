@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const prefix = botSettings.prefix;
 const fs = require("fs");
 var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+const xp = require("./xp.json")
+const { createCanvas, loadImage } = require("canvas");
 
 
 const bot = new Discord.Client({disableEveryone: true});
@@ -60,8 +62,6 @@ bot.on("message", async message => {
     fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error(err);
     })
-
-
 
     //if(command === `${prefix}userinfo`) {
     //    let embed = new Discord.RichEmbed()
