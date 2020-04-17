@@ -7,10 +7,10 @@ module.exports.run = async (bot, message, args) => {
     .addField("Doména", "ms38.hicoria.cloud:47275", true)
     .addField("Verze", "1.8 - 1.15", true)
     .addField("Owner", "Prejvi", true)
-    .addField("Hotové servery", "Minigames, Survival, Creative", true)
-    .addField("Připravují se", "Skyblock", true)
+    .addField("Hotové servery", "Survival, Creative", true)
+    .addField("Připravují se", "Skyblock, Minigames", true)
     .setColor(0xF66704)
-    .setFooter("aktualizováno : 14.4. 2020 v 21:50")
+    .setFooter("aktualizováno : 17.4. 2020 v 13:00")
     .setThumbnail("https://i.imgur.com/wk9tFBP.png")
     message.channel.sendEmbed(info);
 }

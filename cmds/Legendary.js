@@ -6,13 +6,15 @@ module.exports.run = async (bot, message, args) => {
     .addField("Je na dobu", "Nikdy nevyprší", true)
     .addField("Stejne premise jako", "Ultra", true)
     .addField("Před jménem", "Prefix Legendary", true)
-    .addField("Discord", "Role Ultra", true)
+    .addField("Discord", "Role Legendary", true)
     .addField("Server", "Připojení na server i když je WH", true)
+    .addField("Server", "Připojení na plný server", true)
     .addField("Kity:", "Kit Legendary", true)
+    .addField("God na Survivalu", "/god", true)
     .addField("Money", "10 000", true)
     .addField("Coins", "2 000", true)
     .setColor(0x4DFB1E)
-    .setFooter("aktualizováno : 15.4. 2020 v 10:00")
+    .setFooter("aktualizováno : 17.4. 2020 v 13:00")
     message.channel.sendEmbed(Perms);
     let info = new Discord.RichEmbed()
     .setTitle("SMS = CZ")
@@ -20,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Ve tvaru:", "csmc 249 s248847 jmeno_hrace", true)
     .addField("Na číslo", "90733", true)
     .setColor(0x4DFB1E)
-    .setFooter("aktualizováno : 15.4. 2020 v 10:00")
+    .setFooter("aktualizováno : 17.4. 2020 v 13:00")
     message.channel.sendEmbed(info);
     let info2 = new Discord.RichEmbed()
     .setTitle("SMS = SK")
@@ -28,13 +30,13 @@ module.exports.run = async (bot, message, args) => {
     .addField("Ve tvaru:", "csmc 10 s248847 jmeno_hrace", true)
     .addField("Na číslo:", "8877", true)
     .setColor(0x4DFB1E)
-    .setFooter("aktualizováno : 15.4. 2020 v 10:00")
+    .setFooter("aktualizováno : 17.4. 2020 v 13:00")
     message.channel.sendEmbed(info2);
     let info3 = new Discord.RichEmbed()
     .setTitle("Karta/PaySafeCard/Bankovní převod = CZ/SK")
     .addField("Odkaz", "https://hicoria.com/vip/gs/248847")
     .setColor(0x4DFB1E)
-    .setFooter("aktualizováno : 15.4. 2020 v 10:00")
+    .setFooter("aktualizováno : 17.4. 2020 v 13:00")
     message.channel.sendEmbed(info3);
 }
 
