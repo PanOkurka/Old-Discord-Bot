@@ -4,10 +4,8 @@ const prefix = botSettings.prefix;
 const fs = require("fs");
 var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 const xp = require("./xp.json")
-const { createCanvas, loadImage } = require("canvas");
 
-
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 bot.commands = new Discord.Collection();
 
 fs.readdir("./cmds/", (err, files) => {
@@ -33,7 +31,7 @@ bot.on("ready", async () => {
 
     bot.user.setStatus("online")
 
-    bot.user.setGame("/help")
+    bot.user.setGame("!help")
 });
 
 bot.on("message", async message => {
@@ -62,22 +60,128 @@ bot.on("message", async message => {
     fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error(err);
     })
-
-    //if(command === `${prefix}userinfo`) {
-    //    let embed = new Discord.RichEmbed()
-    //        .setAuthor(message.author.username)
-    //        .setDescription("This is the user info!")
-    //        .setColor(0x2cfc03)
-    //        .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
-    //        .addField("ID", message.author.id)
-    //        .addField("Created At", message.author.createdAt);
-
-    //    message.channel.sendEmbed(embed);
-
-    //    return;
-    //}
-
     
 });
+
+bot.on("guildMemberAdd", async member => {
+
+    let welcomechannel = member.guild.channels.find(`name`, "welcome");
+    welcomechannel.send(`${member} just joined the server!`);
+    return;
+});
+
+bot.on("guildMemberRemove", async member => {
+
+    let leavechannel = member.guild.channels.find(`name`, "exit");
+    leavechannel.send(`${member.displayName} leave the server!`);
+    return;
+});
+
+bot.on("channelCreate", async channel => {
+
+    let sChannel = channel.guild.channels.find(`name`, "logs");
+    let chcreate = new Discord.RichEmbed()
+    .setTitle("Channel Created!")
+    .setDescription(`${channel} byl vytvořen!`)
+    .setColor(0x49F759)
+    sChannel.send(chcreate)
+    return;
+})
+
+bot.on("channelDelete", async channel => {
+
+    let sChannel = channel.guild.channels.find(`name`, "logs");
+    let chdel = new Discord.RichEmbed()
+    .setTitle("Channel Remove!")
+    .setDescription(`${channel.name} byl odstraněn!`)
+    .setColor(0x49F759)
+    sChannel.send(chdel)
+    return;
+})
+
+bot.on("messageDelete", async message => {
+    
+    if(message.author.bot) return;
+
+    let logs = await message.guild.fetchAuditLogs({type: 72});
+    let entry = logs.entries.first()
+
+    let embed = new Discord.RichEmbed()
+        .setTitle("Deteted Message")
+        .setAuthor(message.author.tag)
+        .setDescription(`**Autor:** ${message.author.tag}\n**Channel:** ${message.channel}\n**Message:** ${message.content}\n**Executor:** ${entry.executor}`)
+        .setTimestamp();
+    let delchannel = message.guild.channels.find(x => x.name === 'logs')
+    delchannel.send(embed);
+
+});
+
+
+bot.on("messageUpdate", async(oldMessage, newMessage) => {
+
+    if(oldMessage.content === newMessage.content){
+        return;
+    }
+
+        let logembed = new Discord.RichEmbed()
+        .setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
+        .setThumbnail(oldMessage.author.avatarURL)
+        .setColor(0xF66704)
+        .setDescription("Message was edited!")
+        .addField("Before", oldMessage.content, true)
+        .addField("After", newMessage.content, true)
+        .setTimestamp();
+
+        let logchannel = newMessage.guild.channels.find(ch => ch.name === "logs")
+        if(!logchannel) return;
+        logchannel.send(logembed);
+
+})
+
+
+bot.on('message', function(message) {
+ 
+    if(message.content.toLowerCase() === `<@611476452994711555> jsi tu?`)
+        message.reply('Ano jsem tu.').catch(err => console.log(err));
+
+});
+
+bot.on('message', function(message) {
+ 
+    if(message.content.toLowerCase() === 'je tu okurka?')
+        message.reply('Neotravuj ho, Něco určitě dělá.').catch(err => console.log(err));
+
+});
+
+
+bot.on('message', function(message) {
+ 
+    if(message.author.bot) return;
+
+
+    if(message.content.toLowerCase().includes('ban'))
+        message.delete();
+
+});
+
+bot.on('message', function(message) {
+ 
+    if(message.author.bot) return;
+
+    if(message.content.toLowerCase().includes('more'))
+        message.delete();
+
+});
+
+bot.on('message', function(message) {
+ 
+    if(message.author.bot) return;
+
+    if(message.content.toLowerCase().includes('pica'))
+        message.delete();
+
+});
+
+
 
 bot.login(botSettings.token);
