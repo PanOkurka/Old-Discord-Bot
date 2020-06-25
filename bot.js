@@ -153,35 +153,27 @@ bot.on('message', function(message) {
 
 });
 
-
 bot.on('message', function(message) {
  
-    if(message.author.bot) return;
-
-
-    if(message.content.toLowerCase().includes('ban'))
-        message.delete();
+    if(message.content.toLowerCase() === 'budeme kamarádi okurko?')
+        message.reply('Ne. Nemá na to čas...').catch(err => console.log(err));
 
 });
 
-bot.on('message', function(message) {
- 
-    if(message.author.bot) return;
+bot.on('message', msg => {
 
-    if(message.content.toLowerCase().includes('more'))
-        message.delete();
+    if(msg.member.hasPermissions("MANAGE_MESSAGES")) return;
 
-});
+    let wordArray = msg.content.toLowerCase().split(" ")
 
-bot.on('message', function(message) {
- 
-    if(message.author.bot) return;
+    let filterWords = ['https', 'http', 'k i c k', 'kick.', 'kick?', 'kick!', 'b a n', 'ban?', 'ban.', 'ban!', 'hajzle', 'kkti', 'kkt', 'kokot', 'kokote', 'bliat', 'šukat', 'cyka', 'suka', 'ban', 'kick', 'more', 'pica', 'pico', 'píča', 'píčo', 'píčá', 'pice', 'kurva', 'píče', 'píčé', 'fuck']
 
-    if(message.content.toLowerCase().includes('pica'))
-        message.delete();
+    for(var i = 0; i < filterWords.length; i++){
+        if(wordArray.includes(filterWords[i])) {
+            msg.delete()
+        }
+    }
 
-});
-
-
+})
 
 bot.login(botSettings.token);
