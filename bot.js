@@ -138,14 +138,6 @@ bot.on("messageUpdate", async(oldMessage, newMessage) => {
 
 })
 
-
-bot.on('message', function(message) {
- 
-    if(message.content.toLowerCase() === `<@611476452994711555> jsi tu?`)
-        message.reply('Ano jsem tu.').catch(err => console.log(err));
-
-});
-
 bot.on('message', function(message) {
  
     if(message.content.toLowerCase() === 'je tu okurka?')
@@ -156,24 +148,30 @@ bot.on('message', function(message) {
 bot.on('message', function(message) {
  
     if(message.content.toLowerCase() === 'budeme kamarádi okurko?')
-        message.reply('Ne. Nemá na to čas...').catch(err => console.log(err));
+        message.reply('Nemá na to čas...').catch(err => console.log(err));
 
 });
 
-bot.on('message', msg => {
+bot.on('message', function(message) {
+ 
+    if(message.content.toLowerCase() === 'budem kamarádi okurko?')
+        message.reply('Nemá na to čas...').catch(err => console.log(err));
 
-    if(msg.member.hasPermissions("MANAGE_MESSAGES")) return;
+});
 
-    let wordArray = msg.content.toLowerCase().split(" ")
+bot.on('message', async message => {
 
-    let filterWords = ['https', 'http', 'k i c k', 'kick.', 'kick?', 'kick!', 'b a n', 'ban?', 'ban.', 'ban!', 'hajzle', 'kkti', 'kkt', 'kokot', 'kokote', 'bliat', 'šukat', 'cyka', 'suka', 'ban', 'kick', 'more', 'pica', 'pico', 'píča', 'píčo', 'píčá', 'pice', 'kurva', 'píče', 'píčé', 'fuck']
+    if(message.member.hasPermissions("MANAGE_CHANNELS")) return;
 
-    for(var i = 0; i < filterWords.length; i++){
-        if(wordArray.includes(filterWords[i])) {
-            msg.delete()
-        }
+    let blacklist = ['http://', 'https://', 'k i c k', 'kick.', 'kick?', 'kick!', 'b a n', 'ban?', 'ban.', 'ban!', 'hajzle', 'kkti', 'kkt', 'kokot', 'kokote', 'bliat', 'šukat', 'cyka', 'suka', 'ban', 'kick', 'more', 'pica', 'pico', 'píča', 'píčo', 'píčá', 'pice', 'kurva', 'píče', 'píčé', 'fuck']
+    let foundInText = false;
+    for (var i in blacklist) {
+        if(message.content.toLowerCase().includes(blacklist[i].toLowerCase())) foundInText = true;
     }
 
+    if(foundInText) {
+        message.delete()
+    }
 })
 
 bot.login(botSettings.token);
