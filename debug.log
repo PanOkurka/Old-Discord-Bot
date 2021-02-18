@@ -1,3 +1,0 @@
-[0908/120736.351:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Prístup byl odepren. (0x5)
-[0625/173837.314:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Prístup byl odepren. (0x5)
-[0625/173947.224:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Prístup byl odepren. (0x5)
